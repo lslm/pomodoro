@@ -1,8 +1,14 @@
+import { AppBar, Toolbar, Typography } from '@mui/material';
+
 const Header = () => {
   return (
-    <header>
-      <h1>My React App</h1>
-    </header>
+    <AppBar sx={{ position: 'fixed', zIndex: 10 }} color='transparent'>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          pomodoro_box
+        </Typography>
+      </Toolbar>
+    </AppBar>
   );
 }
 

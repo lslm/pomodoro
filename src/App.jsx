@@ -1,11 +1,31 @@
-import './App.css'
+import Header from './components/Header'
 import PomodoroTimer from './components/PomodoroTime'
+import './App.css'
+import Instructions from './components/Instructions'
+import TaskForm from './components/TaskForm'
+import TasksList from './components/TasksList'
+import { TaskProvider } from './contexts/TaskContext'
 
 function App() {
 
   return (
     <>
-      <PomodoroTimer />
+      <Header />
+
+      <TaskProvider>
+        <div className="content">
+          <div className='main'>
+            <div className='form'>
+              <Instructions />
+
+              <TaskForm />
+              <TasksList />
+            </div>
+
+            <PomodoroTimer />
+          </div>
+        </div>
+      </TaskProvider>
     </>
   )
 }
