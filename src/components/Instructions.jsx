@@ -2,7 +2,7 @@ import './Intructions.css';
 
 const Instructions = () => {
   return (
-    <div className="instructions">
+    <div>
       <h2>Bom! Agora você pode começar a trabalhar:</h2>
       <ul>
         <li>Escreva o nome da tarefa atual</li>

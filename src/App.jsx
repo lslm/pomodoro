@@ -16,7 +16,9 @@ function App() {
         <div className="content">
           <div className='main'>
             <div className='form'>
-              <Instructions />
+              <div className='instructions'>
+                <Instructions />
+              </div>
 
               <TaskForm />
               <TasksList />
