@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { TaskContext } from '../contexts/TaskContext';
-import { ListItem, ListItemText, MenuItem, ListItemIcon } from '@mui/material';
+import { ListItem, ListItemText, MenuItem, ListItemIcon, ListItemButton } from '@mui/material';
 import Submenu from './Submenu';
 
 const TaskItem = ({ task }) => {
@@ -13,8 +13,10 @@ const TaskItem = ({ task }) => {
   }
 
   const decreasePomodoro = () => {
-    task.pomorodos--;
-    updateTask(task);
+    if (task.pomorodos > 0) {
+      task.pomorodos--;
+      updateTask(task);
+    }
   }
 
   const setEditing = () => {
@@ -27,7 +29,6 @@ const TaskItem = ({ task }) => {
 
   return (
     <ListItem
-      onClick={() => updateCurrentTask(task)}
       secondaryAction={
         <Submenu>
           <MenuItem onClick={increasePomodoro}>Aumentar</MenuItem>
@@ -36,10 +37,12 @@ const TaskItem = ({ task }) => {
           <MenuItem onClick={handleDelete}>Excluir</MenuItem>
         </Submenu>
       }>
-      <ListItemIcon>
-        <ListItemText primary={task.pomorodos} />
-      </ListItemIcon>
-      <ListItemText primary={task.title} />
+      <ListItemButton onClick={() => updateCurrentTask(task)}>
+        <ListItemIcon>
+          <ListItemText primary={task.pomorodos} />
+        </ListItemIcon>
+        <ListItemText primary={task.title} />
+      </ListItemButton>
     </ListItem>
   );
 }

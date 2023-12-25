@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Button, Menu } from '@mui/material';
+import { IconButton, Menu } from '@mui/material';
+import { MoreHoriz } from '@mui/icons-material';
 
 const Submenu = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -14,15 +15,15 @@ const Submenu = ({ children }) => {
 
   return (
     <>
-      <Button
+      <IconButton
         id="basic-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Dashboard
-      </Button>
+        <MoreHoriz />
+      </IconButton>
       <Menu
         id="basic-menu"
         anchorEl={anchorEl}

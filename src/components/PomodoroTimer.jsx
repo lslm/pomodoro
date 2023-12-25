@@ -30,7 +30,13 @@ const PomodoroTimer = () => {
     }
 
     return () => clearInterval(interval);
-  }, [isActive, seconds, workTime, breakTime]);
+  }, [isActive, seconds]);
+
+  useEffect(() => {
+    setCurrentSessionIndex(0);
+    setSeconds(workTime);
+    setIsActive(false);
+  }, [currentTask])
 
   const toggleTimer = () => {
     setIsActive(!isActive);
