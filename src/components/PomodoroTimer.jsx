@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { TaskContext } from '../contexts/TaskContext';
+import './PomodoroTimer.css';
 
 const PomodoroTimer = () => {
   const [seconds, setSeconds] = useState(1500); // Tempo inicial em segundos (25 minutos)
@@ -8,6 +10,8 @@ const PomodoroTimer = () => {
   const breakTime = 300; // Tempo de pausa em segundos (5 minutos)
   const longBreakTime = 900; // Tempo de pausa longa em segundos (15 minutos)
   const sessionsSequences = [1, 2, 1, 2, 1, 2, 1, 3]; // Sequência de sessões de trabalho e pausa. 1 = trabalho, 2 = pausa curta, 3 = pausa longa
+
+  const { currentTask } = useContext(TaskContext);
 
   useEffect(() => {
     let interval = null;
@@ -75,25 +79,57 @@ const PomodoroTimer = () => {
     }
   }
 
-  const sessionTitle = () => {
+  const currentSessionClass = () => {
     const currentSession = sessionsSequences[currentSessionIndex];
 
+    if (!isActive) {
+      return 'title';
+    }
+
     if (currentSession === 1) {
-      return 'Trabalho';
-    } else if (currentSession === 2) {
-      return 'Pausa curta';
+      return 'title work';
     } else {
-      return 'Pausa longa';
+      return 'title break';
+    }
+  }
+
+  const currentSessionTimerClass = () => {
+    const currentSession = sessionsSequences[currentSessionIndex];
+
+    if (!isActive) {
+      return 'timer';
+    }
+
+    if (currentSession === 1) {
+      return 'timer timer-work';
+    } else {
+      return 'timer timer-break';
     }
   }
 
   return (
     <div className="pomodoro">
-      <h1>{sessionTitle()}</h1>
-      <p>{formatTime(seconds)}</p>
-      <button onClick={toggleTimer}>{isActive ? 'Pausar' : 'Iniciar'}</button>
-      <button onClick={resetTimer}>Reiniciar</button>
-      <button onClick={changeSession}>Pular</button>
+    { currentTask &&
+      <>
+        <div className={ currentSessionClass() }>
+          <h3>{ currentTask.title }</h3>
+        </div>
+
+        <p className={ currentSessionTimerClass() }>{formatTime(seconds)}</p>
+
+        <div className='actions'>
+          <button className='button start-button' onClick={toggleTimer}>{isActive ? 'Pausar' : 'Iniciar'}</button>
+
+          { !isActive &&
+            <button className='button stop-button' onClick={resetTimer}>Parar</button>
+          }
+          { isActive &&
+            <button className='button stop-button' onClick={changeSession}>Pular</button>
+          }
+
+        </div>
+      </>
+    }
     </div>
   );
 };

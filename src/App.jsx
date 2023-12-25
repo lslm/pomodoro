@@ -1,5 +1,5 @@
 import Header from './components/Header'
-import PomodoroTimer from './components/PomodoroTime'
+import PomodoroTimer from './components/PomodoroTimer'
 import './App.css'
 import Instructions from './components/Instructions'
 import TaskForm from './components/TaskForm'

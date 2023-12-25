@@ -2,7 +2,7 @@ import { AppBar, Toolbar, Typography } from '@mui/material';
 
 const Header = () => {
   return (
-    <AppBar sx={{ position: 'fixed', zIndex: 10 }} color='transparent'>
+    <AppBar sx={{ position: 'fixed', zIndex: 10 }} color='primary'>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           pomodoro_box

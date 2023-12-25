@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react';
 import { TaskContext } from '../contexts/TaskContext';
 import { ListItem, ListItemText, MenuItem, ListItemIcon } from '@mui/material';
-import BluetoothIcon from '@mui/icons-material/Bluetooth';
 import Submenu from './Submenu';
 
 const TaskItem = ({ task }) => {
